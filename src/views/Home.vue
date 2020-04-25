@@ -1,6 +1,15 @@
 <template>
     <div class="home">
-        Home
+        <ul class="gallery" style="list-style-type:none;">
+            <li v-for="(photo, name) in photos" :key="name">
+                <a :href="'img' + $route.path + photo">
+                    <img
+                        :src="'img' + $route.path + '/' + photo"
+                        loading="lazy"
+                    />
+                </a>
+            </li>
+        </ul>
     </div>
 </template>
 

@@ -11,6 +11,7 @@
 <script>
 import WeddingNav from './components/WeddingNav.vue';
 import WeddingHeader from './components/WeddingHeader.vue';
+
 export default {
     name: 'App',
     components: {
