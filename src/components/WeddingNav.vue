@@ -22,7 +22,7 @@
             <v-col v-for="(value, name) in pages" :key="name">
                 <v-tab class="pa-4 text-center">
                     <router-link :to="value">
-                        {{ name }}
+                        <span class="textLink">{{ name }}</span>
                     </router-link>
                 </v-tab>
             </v-col>
@@ -49,8 +49,10 @@ export default {
 </script>
 
 <style scoped>
-a {
+.textLink {
     color: black;
+}
+a {
     text-decoration: none;
 }
 </style>

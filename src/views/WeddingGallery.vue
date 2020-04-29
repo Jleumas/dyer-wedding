@@ -2,8 +2,8 @@
     <div>
         <ul class="gallery" style="list-style-type:none;">
             <li v-for="(photo, name) in photos" :key="name">
-                <a :href="photoFolder + photo">
-                    <img :src="photoFolder + photo" loading="lazy" />
+                <a :href="'img' + '/' + folder + '/' + photo">
+                    <img :src="'img' + '/' + folder + '/' + photo" />
                 </a>
             </li>
         </ul>
@@ -11,10 +11,16 @@
 </template>
 
 <script>
+import photos from '../../public/img/getting-ready/photos.json';
 export default {
     name: 'WeddingGallery',
-    props: ['photoFolder'],
-    data: () => ({})
+    props: ['folder'],
+    data: () => ({
+        photos: photos.photos
+    }),
+    created: function(){
+        console.log(this.folder);
+    }
 };
 </script>
 
