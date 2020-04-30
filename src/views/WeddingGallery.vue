@@ -2,7 +2,7 @@
     <div>
         <ul :name="photos" class="gallery" style="list-style-type:none;">
             <li v-for="imagePath in imagePaths" :key="imagePath">
-                <a :href="'img' + imagePath">
+                <a :href="'img/' + imagePath">
                     <img :src="'img/' + imagePath" />
                 </a>
             </li>
