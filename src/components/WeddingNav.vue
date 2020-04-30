@@ -36,13 +36,13 @@ export default {
     data: () => ({
         drawer: null,
         pages: {
-            'THE PREP': '/getting-ready',
-            'THE FIRST LOOK': '/the-first-look',
-            'THE CEREMONY': '/the-ceremony',
-            'THE FAMILY': 'the-family',
-            'THE PARTY': '/the-party',
-            'THE COUPLE': 'the-couple',
-            'THE DETAILS': 'the-details'
+            'THE PREP': '/gallery/getting-ready',
+            'THE FIRST LOOK': '/gallery/the-first-look',
+            'THE CEREMONY': '/gallery/the-ceremony',
+            'THE FAMILY': '/gallery/the-family',
+            'THE PARTY': '/gallery/the-party',
+            'THE COUPLE': '/gallery/the-couple',
+            'THE DETAILS': '/gallery/the-details'
         }
     })
 };

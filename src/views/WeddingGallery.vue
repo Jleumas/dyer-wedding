@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul :name="photos" class="gallery" style="list-style-type:none;">
-            <li v-for="(photo, name) in photos" :key="name">
-                <a :href="'img' + folder + '/' + photo">
-                    <img :src="'img' + folder + '/' + photo" />
+            <li v-for="imagePath in imagePaths" :key="imagePath">
+                <a :href="'img' + imagePath">
+                    <img :src="'img/' + imagePath" />
                 </a>
             </li>
         </ul>
@@ -11,9 +11,46 @@
 </template>
 
 <script>
+function FindImages(imageRoutes, imgpath) {
+    var allImages = [];
+
+    for (let index = 0; index < imageRoutes.length; index++) {
+        const photoContext = imageRoutes[index];
+
+        const pathsForKey = photoContext.photos.map(photoName => `${photoContext.path}/${photoName}`);
+        allImages = allImages.concat(pathsForKey);
+    }
+
+    return allImages.filter(x => x.startsWith(imgpath));
+}
+
 export default {
     name: 'WeddingGallery',
-    props: ['folder', 'photos']
+    props: ['folder', 'photos'],
+    data () {
+        return {
+            imagePaths: []
+        };
+    },
+    created () {
+        // fetch the data when the view is created and the data is
+        // already being observed
+        this.fetchData()
+    },
+    watch: {
+        // call again the method if the route changes
+        '$route': 'fetchData'
+    },
+    methods: {
+        async fetchData () {
+            // Hit AWS function to get photo paths.
+            // TODO: Use Axios
+            const imageRoutes = await window.fetch("/img/allphotos.json")
+                .then(response => response.json());
+
+            this.imagePaths = FindImages(imageRoutes.photos, this.$route.params.imgpath);
+        }
+    }
 };
 </script>
 
