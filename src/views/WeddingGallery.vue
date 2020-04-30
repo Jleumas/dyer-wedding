@@ -27,7 +27,7 @@ function FindImages(imageRoutes, imgpath) {
 export default {
     name: 'WeddingGallery',
     props: ['folder', 'photos'],
-    data () {
+    data() {
         return {
             imagePaths: []
         };

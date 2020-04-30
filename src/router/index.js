@@ -10,7 +10,7 @@ const routes = [
         component: () => import('../views/Home.vue')
     },
     {
-        path: '/gallery/:imgpath+',
+        path: '/:imgpath+',
         component: () => import('../views/WeddingGallery.vue')
     }
 ];
