@@ -17,7 +17,9 @@ function FindImages(imageRoutes, imgpath) {
     for (let index = 0; index < imageRoutes.length; index++) {
         const photoContext = imageRoutes[index];
 
-        const pathsForKey = photoContext.photos.map(photoName => `${photoContext.path}/${photoName}`);
+        const pathsForKey = photoContext.photos.map(
+            photoName => `${photoContext.path}/${photoName}`
+        );
         allImages = allImages.concat(pathsForKey);
     }
 
@@ -32,23 +34,27 @@ export default {
             imagePaths: []
         };
     },
-    created () {
+    created() {
         // fetch the data when the view is created and the data is
         // already being observed
-        this.fetchData()
+        this.fetchData();
     },
     watch: {
         // call again the method if the route changes
-        '$route': 'fetchData'
+        $route: 'fetchData'
     },
     methods: {
-        async fetchData () {
+        async fetchData() {
             // Hit AWS function to get photo paths.
             // TODO: Use Axios
-            const imageRoutes = await window.fetch("/img/allphotos.json")
+            const imageRoutes = await window
+                .fetch('/img/allphotos.json')
                 .then(response => response.json());
 
-            this.imagePaths = FindImages(imageRoutes.photos, this.$route.params.imgpath);
+            this.imagePaths = FindImages(
+                imageRoutes.photos,
+                this.$route.params.imgpath
+            );
         }
     }
 };
