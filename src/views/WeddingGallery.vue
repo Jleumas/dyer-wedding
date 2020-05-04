@@ -56,7 +56,7 @@ ul {
 }
 li {
     flex-grow: 2;
-    height: 40vh;
+    height: 50vh;
     padding: 10px;
 }
 li:last-child {

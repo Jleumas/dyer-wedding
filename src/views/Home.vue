@@ -1,9 +1,9 @@
 <template>
     <div class="home">
         <ul class="gallery" style="list-style-type:none;">
-            <li v-for="(photo, name) in photos" :key="name">
-                <a :href="'gallery/' + photo">
-                    <img :src="'gallery/' + photo" />
+            <li v-for="imagePath in imagePaths" :key="imagePath">
+                <a :href="'gallery/' + imagePath">
+                    <img :src="'gallery/' + imagePath" />
                 </a>
             </li>
         </ul>
@@ -13,7 +13,6 @@
 <script>
 export default {
     name: 'Home',
-    props: ['folder', 'photos'],
     data() {
         return {
             imagePaths: []
@@ -36,8 +35,8 @@ export default {
                 .fetch('/img/allphotos.json')
                 .then(response => response.json());
 
-            this.imagePaths = imageRoutes.photos.filter(
-                x => x.startsWith('home')
+            this.imagePaths = imageRoutes.photos.filter(x =>
+                x.startsWith('home')
             );
         }
     }
@@ -45,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-iv {
+div {
     width: 90%;
     margin: auto;
 }
@@ -57,7 +56,7 @@ ul {
 }
 li {
     flex-grow: 2;
-    height: 40vh;
+    height: 60vh;
     padding: 10px;
 }
 li:last-child {

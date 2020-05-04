@@ -34,12 +34,16 @@ export default {
         async fetchData() {
             // Hit AWS function to search photo paths.
             // TODO: Use Axios?
+            if (this.$route == '/') {
+                this.splashPhoto = 'home/splash.jpg';
+                return;
+            }
             const imageRoutes = await window
-                .fetch('/img/allphotos.json')
+                .fetch('/img/splash.json')
                 .then(response => response.json());
 
             this.splashPhoto = imageRoutes.photos.filter(x =>
-                x.includes(this.$route.params.imgpath + '/splash')
+                x.includes(this.$route.params.imgpath)
             );
         }
     }
