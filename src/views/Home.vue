@@ -36,7 +36,7 @@ export default {
                 .then(response => response.json());
 
             this.imagePaths = imageRoutes.photos.filter(x =>
-                x.startsWith('home')
+                x.startsWith('home/img')
             );
         }
     }

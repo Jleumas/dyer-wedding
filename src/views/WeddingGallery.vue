@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul :name="photos" class="gallery" style="list-style-type:none;">
+        <ul class="gallery" style="list-style-type:none;">
             <li v-for="imagePath in imagePaths" :key="imagePath">
                 <a :href="'gallery/' + imagePath">
                     <img :src="'gallery/' + imagePath" />
@@ -36,7 +36,7 @@ export default {
                 .then(response => response.json());
 
             this.imagePaths = imageRoutes.photos.filter(x =>
-                x.startsWith(this.$route.params.imgpath)
+                x.startsWith(this.$route.params.imgpath + '/img')
             );
         }
     }
