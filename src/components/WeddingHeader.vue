@@ -1,6 +1,6 @@
 <template>
     <div id="headerContainer">
-        <img id="splash" :src="'/img' + photoFolder + '/splash.jpg'" />
+        <img id="splash" :src="'gallery/' + splashPhoto" />
         <div id="textBlock">
             <router-link to="/"><h1>The Dyer Wedding</h1></router-link>
             <h3>February 15, 2020</h3>
@@ -16,8 +16,33 @@
 <script>
 export default {
     name: 'WeddingHeader',
-    props: ['photoFolder'],
-    data: () => ({})
+    data() {
+        return {
+            splashPhoto: ''
+        };
+    },
+    created() {
+        // fetch the data when the view is created and the data is
+        // already being observed
+        this.fetchData();
+    },
+    watch: {
+        // call again the method if the route changes
+        $route: 'fetchData'
+    },
+    methods: {
+        async fetchData() {
+            // Hit AWS function to search photo paths.
+            // TODO: Use Axios?
+            const imageRoutes = await window
+                .fetch('/img/allphotos.json')
+                .then(response => response.json());
+
+            this.splashPhoto = imageRoutes.photos.filter(x =>
+                x.includes(this.$route.params.imgpath + '/splash')
+            );
+        }
+    }
 };
 </script>
 

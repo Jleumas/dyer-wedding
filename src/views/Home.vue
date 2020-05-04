@@ -2,8 +2,8 @@
     <div class="home">
         <ul class="gallery" style="list-style-type:none;">
             <li v-for="(photo, name) in photos" :key="name">
-                <a :href="'img/home/' + photo">
-                    <img :src="'img/home/' + photo" loading="lazy" />
+                <a :href="'gallery/' + photo">
+                    <img :src="'gallery/' + photo" />
                 </a>
             </li>
         </ul>
@@ -11,12 +11,36 @@
 </template>
 
 <script>
-import photos from '../../public/img/home/photos.json';
 export default {
     name: 'Home',
-    data: () => ({
-        photos: photos.photos
-    })
+    props: ['folder', 'photos'],
+    data() {
+        return {
+            imagePaths: []
+        };
+    },
+    created() {
+        // fetch the data when the view is created and the data is
+        // already being observed
+        this.fetchData();
+    },
+    watch: {
+        // call again the method if the route changes
+        $route: 'fetchData'
+    },
+    methods: {
+        async fetchData() {
+            // Hit AWS function to search photo paths.
+            // TODO: Use Axios?
+            const imageRoutes = await window
+                .fetch('/img/allphotos.json')
+                .then(response => response.json());
+
+            this.imagePaths = imageRoutes.photos.filter(
+                x => x.startsWith('home')
+            );
+        }
+    }
 };
 </script>
 
