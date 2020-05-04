@@ -2,8 +2,8 @@
     <v-app>
         <v-content transition="slide-x-transition">
             <WeddingNav></WeddingNav>
-            <WeddingHeader :photoFolder="$route.path"></WeddingHeader>
-            <router-view :folder="$route.path"></router-view>
+            <WeddingHeader></WeddingHeader>
+            <router-view></router-view>
         </v-content>
     </v-app>
 </template>
