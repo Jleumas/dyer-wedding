@@ -11,21 +11,6 @@
 </template>
 
 <script>
-function FindImages(imageRoutes, imgpath) {
-    var allImages = [];
-
-    for (let index = 0; index < imageRoutes.length; index++) {
-        const photoContext = imageRoutes[index];
-
-        const pathsForKey = photoContext.photos.map(
-            photoName => `${photoContext.path}/${photoName}`
-        );
-        allImages = allImages.concat(pathsForKey);
-    }
-
-    return allImages.filter(x => x.startsWith(imgpath));
-}
-
 export default {
     name: 'WeddingGallery',
     props: ['folder', 'photos'],
@@ -45,16 +30,13 @@ export default {
     },
     methods: {
         async fetchData() {
-            // Hit AWS function to get photo paths.
-            // TODO: Use Axios
+            // Hit AWS function to search photo paths.
+            // TODO: Use Axios?
             const imageRoutes = await window
                 .fetch('/img/allphotos.json')
                 .then(response => response.json());
 
-            this.imagePaths = FindImages(
-                imageRoutes.photos,
-                this.$route.params.imgpath
-            );
+            this.imagePaths = imageRoutes.photos.filter(x => x.startsWith(this.$route.params.imgpath));
         }
     }
 };
