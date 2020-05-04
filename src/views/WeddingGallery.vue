@@ -2,8 +2,8 @@
     <div>
         <ul class="gallery" style="list-style-type:none;">
             <li v-for="imagePath in imagePaths" :key="imagePath">
-                <a :href="'gallery/' + imagePath">
-                    <img :src="'gallery/' + imagePath" />
+                <a :href="imagePath">
+                    <img :src="imagePath" />
                 </a>
             </li>
         </ul>
@@ -32,11 +32,11 @@ export default {
             // Hit AWS function to search photo paths.
             // TODO: Use Axios?
             const imageRoutes = await window
-                .fetch('/img/allphotos.json')
+                .fetch('/gallery/allphotos.json')
                 .then(response => response.json());
 
             this.imagePaths = imageRoutes.photos.filter(x =>
-                x.startsWith(this.$route.params.imgpath + '/img')
+                x.includes(this.$route.params.imgpath + '/img')
             );
         }
     }

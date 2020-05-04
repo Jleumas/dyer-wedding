@@ -1,6 +1,6 @@
 <template>
     <div id="headerContainer">
-        <img id="splash" :src="'gallery/' + splashPhoto" />
+        <img id="splash" :src="splashPhoto" />
         <div id="textBlock">
             <router-link to="/"><h1>The Dyer Wedding</h1></router-link>
             <h3>February 15, 2020</h3>
@@ -35,11 +35,11 @@ export default {
             // Hit AWS function to search photo paths.
             // TODO: Use Axios?
             if (this.$route.path == '/') {
-                this.splashPhoto = 'home/splash.jpg';
+                this.splashPhoto = 'gallery/home/splash.jpg';
                 return null;
             }
             const imageRoutes = await window
-                .fetch('/img/splash.json')
+                .fetch('/gallery/splash.json')
                 .then(response => response.json());
 
             this.splashPhoto = imageRoutes.photos.filter(x =>
