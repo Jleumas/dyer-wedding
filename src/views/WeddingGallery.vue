@@ -1,9 +1,9 @@
 <template>
     <div>
-        <ul class="gallery" style="list-style-type:none;">
+        <ul class="gallery">
             <li v-for="imagePath in imagePaths" :key="imagePath">
                 <a :href="imagePath">
-                    <img :src="imagePath" />
+                    <img :src="imagePath" loading="lazy" />
                 </a>
             </li>
         </ul>
