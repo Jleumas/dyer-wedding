@@ -1,11 +1,9 @@
 <template>
     <span>
         <span class="hidden-md-and-up">
-            <v-card
-                outlined
-                class="pa-4 text-center"
-                @click="drawer = !drawer"
-            ></v-card>
+            <v-card outlined class="pa-4 text-center" @click="drawer = !drawer"
+                >more</v-card
+            >
             <v-navigation-drawer v-model="drawer" absolute temporary>
                 <v-card
                     class="pa-4 text-center"
@@ -13,7 +11,7 @@
                     :key="name"
                 >
                     <router-link :to="value">
-                        {{ name }}
+                        <span class="textLink">{{ name }}</span>
                     </router-link>
                 </v-card>
             </v-navigation-drawer>

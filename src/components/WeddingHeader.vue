@@ -65,7 +65,7 @@ export default {
     top: 5%;
     width: 100%;
     color: white;
-    text-shadow: 2px 2px black;
+    text-shadow: 1px 1px black;
     text-align: center;
 }
 #headerContainer {

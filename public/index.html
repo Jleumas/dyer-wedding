@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
+    <script type="text/javascript">
+      window.onload = function() {
+        baguetteBox.run('.gallery', {
+          animation: 'fadein'
+        });
+      };
+    </script>
   </head>
   <body>
     <noscript>
@@ -17,12 +24,6 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
-  <script type="text/javascript">
-    window.onload = function() {
-      baguetteBox.run('.gallery', {
-        animation: 'fadein'
-      });
-    };
-  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js" async></script>
 </html>
