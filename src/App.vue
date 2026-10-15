@@ -1,34 +1,23 @@
 <template>
-    <v-app>
-        <v-content transition="slide-x-transition">
-            <WeddingNav></WeddingNav>
-            <WeddingHeader></WeddingHeader>
-            <router-view></router-view>
-        </v-content>
-    </v-app>
+    <SiteHeader :album="currentAlbum" />
+    <SiteNav />
+    <main>
+        <RouterView />
+    </main>
+    <footer class="footer">
+        Photos by <a href="https://www.rachelartimephoto.com" rel="noopener">Rachel Artime</a>
+    </footer>
 </template>
 
-<script>
-import WeddingNav from './components/WeddingNav.vue';
-import WeddingHeader from './components/WeddingHeader.vue';
+<script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import SiteHeader from './components/SiteHeader.vue';
+import SiteNav from './components/SiteNav.vue';
+import { albums, home } from './albums.js';
 
-export default {
-    name: 'App',
-    components: {
-        WeddingNav,
-        WeddingHeader
-    }
-};
+const route = useRoute();
+const currentAlbum = computed(
+    () => albums.find((a) => route.path === `/gallery/${a.slug}`) ?? home
+);
 </script>
-
-<style>
-body {
-    background-image: linear-gradient(
-        to top,
-        #ecedee 0%,
-        #eceeef 75%,
-        #adbfd1 100%
-    );
-    min-height: 100vh;
-}
-</style>

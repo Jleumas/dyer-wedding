@@ -1,0 +1,17 @@
+{
+    "home": "home",
+    "order": [
+        "home",
+        "getting-ready",
+        "the-first-look",
+        "the-ceremony",
+        "the-family",
+        "the-party",
+        "the-couple",
+        "the-details",
+        "engagement-photos"
+    ],
+    "titles": {
+        "getting-ready": "The Prep"
+    }
+}

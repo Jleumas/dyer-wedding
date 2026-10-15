@@ -21,3 +21,5 @@ yarn-error.log*
 *.sw?
 *.jpg
 *.py
+# generated web-sized photos
+photos-out/
