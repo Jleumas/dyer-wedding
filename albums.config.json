@@ -2,14 +2,14 @@
     "home": "home",
     "order": [
         "home",
+        "engagement-photos",
+        "the-details",
         "getting-ready",
         "the-first-look",
         "the-ceremony",
         "the-family",
-        "the-party",
         "the-couple",
-        "the-details",
-        "engagement-photos"
+        "the-party"
     ],
     "titles": {
         "getting-ready": "The Prep"
