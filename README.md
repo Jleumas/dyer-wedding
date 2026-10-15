@@ -52,3 +52,19 @@ npm install
 npm run photos     # once, so there's something to show
 npm run dev
 ```
+
+## Routing on CloudFront
+
+`infra/spa-routes.js` is a CloudFront Function (`spa-routes`, viewer request,
+default behavior on distribution `E3406V6NLMV090`). It serves `index.html`
+for any path without a file extension, so `/gallery/<album>` links work when
+opened directly, while missing files still return an error. To change it:
+
+```sh
+ETAG=$(aws cloudfront describe-function --name spa-routes --query ETag --output text)
+aws cloudfront update-function --name spa-routes --if-match "$ETAG" \
+    --function-config '{"Comment":"Serve index.html for SPA routes (no file extension)","Runtime":"cloudfront-js-2.0"}' \
+    --function-code fileb://infra/spa-routes.js
+ETAG=$(aws cloudfront describe-function --name spa-routes --query ETag --output text)
+aws cloudfront publish-function --name spa-routes --if-match "$ETAG"
+```
